@@ -1,7 +1,7 @@
 import React from 'react';
 import Navegacion from './Navegacion';
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 const HeaderDiv = styled.div`
     background-color: #16425c;
@@ -27,11 +27,22 @@ const ContenedorHeader = styled.div`
 `;
 
 const Header = () => {
+
+    const data = useStaticQuery( graphql`
+        query{
+            file( relativePath: { eq: "logo.svg"}){
+                publicURL
+            }
+        }
+    `);
+
+    const imagen = data.file.publicURL;
+
     return (  
         <>
             <HeaderDiv>
                 <ContenedorHeader>
-                    <Link to={'/'}> <h1>Bienes Raices</h1> </Link>
+                    <Link to={'/'}> <img src={ imagen } alt="Imagen Logo" /> </Link>
 
                     <Navegacion />
                 </ContenedorHeader>
