@@ -41,7 +41,7 @@ const Iconos = ({ estacionamiento, habitaciones, wc }) => {
             <ListadoIconos>
                 <li>
                     <img src={ imagenIcono[0].node.publicURL } alt="Imagen wc" />
-                    <p>{wc}</p>
+                    <p>{estacionamiento}</p>
                 </li>
 
                 <li>
@@ -51,7 +51,7 @@ const Iconos = ({ estacionamiento, habitaciones, wc }) => {
 
                 <li>
                     <img src={ imagenIcono[2].node.publicURL} alt="Imagen Estacionamiento" />
-                    <p>{ estacionamiento }</p>
+                    <p> { wc } </p>
 
                 </li>
             </ListadoIconos>

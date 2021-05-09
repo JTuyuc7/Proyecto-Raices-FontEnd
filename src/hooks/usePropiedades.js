@@ -13,8 +13,11 @@ const UsePropiedades = () => {
                 precio
                 descripcion
                 habitaciones
-                    imagen{
-                        publicURL
+
+                imagen{
+                    childImageSharp{
+                        gatsbyImageData
+                    }
                 }
                 
                 agentes{

@@ -1,7 +1,14 @@
 import React from 'react';
 import Iconos from './Iconos';
 import styled from '@emotion/styled';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
+import urlSlug from 'url-slug';
+
+const ImagenPropiedad = styled(GatsbyImage)`
+    height: 300px;
+    width: 600;
+`;
 
 const Card = styled.div`
     border: 1.5px solid #e1e1e1;
@@ -25,18 +32,35 @@ const Contenido = styled.div`
     }
 `;
 
+const Boton = styled(Link)`
+    display: block;
+    background-color: #2dc246;
+    padding: 1.2rem;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    
+    &:hover{
+        background-color: #00a10d;
+    }
+`;
+
 const PropiedadPreview = ({propiedad}) => {
 
     //console.log(propiedad);
 
     const { nombre, precio, wc, estacionamiento, imagen, habitaciones, id  } = propiedad;
-    console.log(id);
+
+    const slug = urlSlug( nombre );
 
     return (  
         <>
             <Card>
 
-                <img src={imagen.publicURL} alt="Imagen Propiedad" />
+                <ImagenPropiedad image={imagen.childImageSharp.gatsbyImageData} alt="Imagen Propiedad" />
 
                 <Contenido>
                     <h3>{nombre}</h3>
@@ -48,10 +72,9 @@ const PropiedadPreview = ({propiedad}) => {
                         wc={ wc }
                     />
 
-                    
+                    <Boton to={slug} >Ver Detalles</Boton>
                 </Contenido>
-
-                <Link to={id} >Ver Detalles</Link>
+                
             </Card>
         </>
     );

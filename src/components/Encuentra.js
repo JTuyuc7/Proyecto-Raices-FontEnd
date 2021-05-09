@@ -36,7 +36,7 @@ const Baner = () => {
 
     const { imagen } = useStaticQuery(graphql`
         query{
-            imagen : file( relativePath: {eq: "encuentra.jpg"}){
+            imagen : file( relativePath: {eq: "baner.jpg"}){
                 childImageSharp{
                     gatsbyImageData
                 }
