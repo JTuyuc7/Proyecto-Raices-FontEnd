@@ -27,15 +27,21 @@ const ListaPropiedades = styled.ul`
 
 const ListadoPropiedades = () => {
 
-    const resultado = UsePropiedades();
-    const [ propiedades, guardarPropiedades ] = useState([]);
+    const resultado = UsePropiedades();                       // Hook para la consulta de todas las propiedades
+    const [ propiedades ] = useState(resultado);              // Satate donde se asigna todas las propiedades del hook
+    const [ filtradas, guardarFiltradas ] = useState([]);     // Nuevo state que almacenara las propiedades filtradas
 
-    // Filtrado de las propiedades
-    const { FiltroUi } = UseFiltro();
+    // Filtrado de las propiedades y objeto del filtro
+    const { categoria, FiltroUi } = UseFiltro();
 
     useEffect(() => {
-        guardarPropiedades(resultado);
-    }, []);
+        if( categoria ){
+            const filtro = propiedades.filter( propiedad => propiedad.categoria.nombre === categoria );
+            guardarFiltradas( filtro );
+        } else {
+            guardarFiltradas( propiedades );
+        }
+    }, [ categoria ]);
 
     return (  
         <>
@@ -48,7 +54,7 @@ const ListadoPropiedades = () => {
             { FiltroUi() }
 
             <ListaPropiedades>
-                { propiedades.map( propiedad => (
+                { filtradas.map( propiedad => (
                     <PropiedadPreview
                         propiedad={propiedad}
                         key={propiedad.id}

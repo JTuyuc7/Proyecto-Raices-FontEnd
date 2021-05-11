@@ -52,9 +52,7 @@ const PropiedadPreview = ({propiedad}) => {
 
     //console.log(propiedad);
 
-    const { nombre, precio, wc, estacionamiento, imagen, habitaciones, id  } = propiedad;
-
-    const slug = urlSlug( nombre );
+    const { nombre, precio, wc, estacionamiento, imagen, habitaciones } = propiedad;
 
     return (  
         <>
@@ -72,7 +70,7 @@ const PropiedadPreview = ({propiedad}) => {
                         wc={ wc }
                     />
 
-                    <Boton to={slug} >Ver Detalles</Boton>
+                    <Boton to={`/${ urlSlug( nombre )}`} >Ver Detalles</Boton>
                 </Contenido>
                 
             </Card>
